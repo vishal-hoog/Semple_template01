@@ -1,25 +1,54 @@
 {
-  "topNavItem": [{
-    "email":"demo@demogmail.com",
-    "phone": "+1 (234) 567-890"
-  }],
+  "topNavItem": [
+    {
+      "email": "demo@demogmail.com",
+      "phone": "+1 (234) 567-890"
+    }
+  ],
+
+  "socialLinks": [
+    {
+      "id": 1,
+      "name": "Facebook",
+      "url": "https://facebook.com/yourpage",
+      "icon": "FaFacebookF"
+    },
+    {
+      "id": 2,
+      "name": "Twitter",
+      "url": "https://twitter.com/yourprofile",
+      "icon": "FaTwitter"
+    },
+    {
+      "id": 3,
+      "name": "Instagram",
+      "url": "https://instagram.com/yourprofile",
+      "icon": "FaInstagram"
+    },
+    {
+      "id": 4,
+      "name": "YouTube",
+      "url": "https://youtube.com/yourchannel",
+      "icon": "FaYoutube"
+    }
+  ],
   "navData": [
     {
       "logoImg": {
-        "logo": "ttp://localhost:3000/assets/img/logo.png"
+        "logo": "https://hoogmatic.in/dist/image/hm_logo"
       }
     },
     { "id": 1, "name": "Home", "url": "/" },
     { "id": 2, "name": "About", "url": "/about" },
-    { "id": 3, "name": "Blog", "url": "/Blog"},
+    { "id": 3, "name": "Blog", "url": "/Blog" },
     { "id": 4, "name": "Contact", "url": "/contact" },
     { "id": 4, "name": "Service", "url": "/service" }
   ],
-  "headerData":[
+  "headerData": [
     {
-     "title":"Making The Digital World Work For You",
-     "description": "And In Order To Make A Business, Brand Advertising And Marketing Plays An Important Role. Similarly, In Making Cultivation Business Are Necessary.",
-     "bannerImg": ""
+      "title": "Making The Digital World Work For You",
+      "description": "And In Order To Make A Business, Brand Advertising And Marketing Plays An Important Role. Similarly, In Making Cultivation Business Are Necessary.",
+      "url": "https://hoogmatic.in/dist/image/hand.png"
     }
   ],
   "formData": [

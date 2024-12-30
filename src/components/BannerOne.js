@@ -4,17 +4,17 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const BannerOne = () => {
-  const [headerData, setHeaderData] = useState([]); // Initialize with an empty array
+  const [headerData, setHeaderData] = useState([]); 
 
   useEffect(() => {
     axios.get('http://localhost:5000/headerData')
       .then((response) => {
-        setHeaderData(response.data);  // Set the fetched data to state
+        setHeaderData(response.data);  
       })
       .catch((error) => {
         console.error('There was an error fetching the nav items!', error);
       });
-  }, []);  // Empty dependency array to run once after mount
+  }, []);  
 
   return (
     <>
@@ -36,7 +36,7 @@ const BannerOne = () => {
         <div className='container'>
           <div className='row'>
             <div className='col-lg-6 align-self-center'>
-              {headerData.length > 0 && headerData.map((item, index) => ( // Only map if data exists
+              {headerData.length > 0 && headerData.map((item, index) => (
                 <div className='banner-inner pe-xl-5' key={index}>
                   <h6
                     className='subtitle'
@@ -96,11 +96,13 @@ const BannerOne = () => {
                   src='assets/img/banner/4.svg'
                   alt='img'
                 />
-                <img
-                  className='main-img'
-                  src='assets/img/banner/1.png'
-                  alt='img'
-                />
+                  {headerData.map((item) => (
+                  <img
+                    className='main-img'
+                    src={item.url}
+                    alt='img'
+                  />
+                ))}
               </div>
             </div>
           </div>

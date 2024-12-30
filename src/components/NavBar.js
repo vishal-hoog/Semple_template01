@@ -1,7 +1,7 @@
-import React, { useEffect,useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import axios from "axios";
 const NavBar = (props) => {
   const [active, setActive] = useState(false);
   const [searchShow, setSearchShow] = useState(false);
@@ -13,14 +13,14 @@ const NavBar = (props) => {
   };
 
   // Control sidebar navigation
-  let items = document.querySelectorAll('.menu-item-has-children > a');
+  let items = document.querySelectorAll(".menu-item-has-children > a");
   for (let i in items) {
     if (items.hasOwnProperty(i)) {
       items[i].onclick = function () {
         this.parentElement
-          .querySelector('.sub-menu')
-          .classList.toggle('active');
-        this.classList.toggle('open');
+          .querySelector(".sub-menu")
+          .classList.toggle("active");
+        this.classList.toggle("open");
       };
     }
   }
@@ -28,25 +28,23 @@ const NavBar = (props) => {
   // State to store navigation items
 
   const [navItems, setNavItems] = useState([]);
- 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/navData')
+    axios
+      .get("http://localhost:5000/navData")
       .then((response) => {
         setNavItems(response.data);
       })
       .catch((error) => {
-        console.error('There was an error fetching the nav items!', error);
+        console.error("There was an error fetching the nav items!", error);
       });
   }, []);
-  
-  
 
   return (
     <>
       {/* search popup start*/}
       <div
-        className={searchShow ? 'td-search-popup active' : 'td-search-popup '}
+        className={searchShow ? "td-search-popup active" : "td-search-popup "}
         id="td-search-popup"
       >
         <form action="/" className="search-form">
@@ -65,7 +63,7 @@ const NavBar = (props) => {
       {/* search popup end*/}
       <div
         onClick={searchActive}
-        className={searchShow ? 'body-overlay active' : 'body-overlay'}
+        className={searchShow ? "body-overlay active" : "body-overlay"}
         id="body-overlay"
       ></div>
       {/* navbar start */}
@@ -76,8 +74,8 @@ const NavBar = (props) => {
               onClick={menuActive}
               className={
                 active
-                  ? 'menu toggle-btn d-block d-lg-none open'
-                  : 'menu toggle-btn d-block d-lg-none'
+                  ? "menu toggle-btn d-block d-lg-none open"
+                  : "menu toggle-btn d-block d-lg-none"
               }
               data-target="#itech_main_menu"
               aria-expanded="false"
@@ -87,11 +85,13 @@ const NavBar = (props) => {
               <span className="icon-right" />
             </button>
           </div>
-          <div className="logo">
-            <Link to="/">
-              <img src="assets/img/logo.png" alt="img" />
-            </Link>
-          </div>
+          {navItems.length > 0 && navItems[0].logoImg && (
+            <div className="logo">
+              <Link to="/">
+                <img src={navItems[0].logoImg.logo} alt="Logo" />
+              </Link>
+            </div>
+          )}
           <div className="nav-right-part nav-right-part-mobile">
             <span className="search-bar-btn" onClick={searchActive}>
               <FaSearch />
@@ -100,19 +100,19 @@ const NavBar = (props) => {
           <div
             className={
               active
-                ? 'collapse navbar-collapse sopen'
-                : 'collapse navbar-collapse'
+                ? "collapse navbar-collapse sopen"
+                : "collapse navbar-collapse"
             }
             id="itech_main_menu"
           >
-        <ul className="navbar-nav menu-open text-lg-end">
-        {/* Map over the navItems and display them */}
-        {navItems.map((item) => (
-           <li className="menu-item-has-children" key={item.id}>
-            <Link to={item.url}>{item.name}</Link>
-          </li>
-        ))}
-      </ul>
+            <ul className="navbar-nav menu-open text-lg-end">
+              {/* Map over the navItems and display them */}
+              {navItems.map((item) => (
+                <li className="menu-item-has-children" key={item.id}>
+                  <Link to={item.url}>{item.name}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
           {/* <div className="nav-right-part nav-right-part-desktop align-self-center">
             <a className="navbar-phone" href="tel:">

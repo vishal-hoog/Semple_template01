@@ -13,10 +13,12 @@ import ServiceAreaOne from "../components/ServiceAreaOne";
 import TeamAreaOne from "../components/TeamAreaOne";
 import WorkProcessOne from "../components/WorkProcessOne";
 import TopNavBar from "../components/TopNavBar";
+import UserContextProvider from "../Context/UserContextProvider";
 
 const HomeOne = () => {
   return (
     <>
+    <UserContextProvider>
      {/* TopNavigation Bar */}
      <TopNavBar />
 
@@ -58,6 +60,7 @@ const HomeOne = () => {
 
       {/* Footer One */}
       <FooterOne />
+      </UserContextProvider>
     </>
   );
 };

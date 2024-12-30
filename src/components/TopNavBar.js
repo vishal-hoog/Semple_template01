@@ -1,59 +1,58 @@
-import React, { useState,useEffect } from "react";
-import axios from "axios";
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube ,FaEnvelope,FaPhoneAlt} from "react-icons/fa";
+import React, { useContext } from "react";
+import UserContext from "../Context/UserContext";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaYoutube,
+  FaEnvelope,
+  FaPhoneAlt,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 function TopNavBar() {
+  // Use the context to get the topNavItem array
+  const { topNavItem, socialLinks } = useContext(UserContext);
 
-  const[topNavItem, setTopNavItem] = useState([]);
-  
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/topNavItem')
-      .then((response) => {
-        setTopNavItem(response.data);
-      })
-      .catch((error) => {
-        console.error('There was an error fetching the nav items!', error);
-      });
-  }, []);
-  
   return (
     <div>
-      <div class="top-navbar">
-        {/* <Left section (Email and Phone) */}
-        {
-          topNavItem.map((item) => (
-            <div class="left" key={item.index}>
-          <a href="mailto:example@example.com"><FaEnvelope /> {item.email}</a>
-          <a href="tel:+1234567890"><FaPhoneAlt /> {item.phone}</a>
-        </div>
-          ))
-        }
+      <div className="top-navbar">
+        {/* Left section (Email and Phone) */}
+        {topNavItem.map((item) => (
+          <div className="left" key={item.id}>
+            <a href={`mailto:${item.email}`}>
+              <FaEnvelope /> {item.email}
+            </a>
+            <a href={`tel:${item.phone}`}>
+              <FaPhoneAlt /> {item.phone}
+            </a>
+          </div>
+        ))}
+
         {/* Right section (Social media icons) */}
-        <div class="right">
+        <div className="right">
           <ul className="social-media">
-            <li>
-              <Link to="#">
-                <FaFacebookF />
-              </Link>
-            </li>
-            <li>
-              <Link to="#">
-                <FaTwitter />
-              </Link>
-            </li>
-            <li>
-              <Link to="#">
-                <FaInstagram />
-              </Link>
-            </li>
-            <li>
-              <Link to="#">
-                <FaYoutube />
-              </Link>
-            </li>
-            
+            {socialLinks.map((social) => {
+              const IconComponent =
+                social.icon === "FaFacebookF"
+                  ? FaFacebookF
+                  : social.icon === "FaTwitter"
+                  ? FaTwitter
+                  : social.icon === "FaInstagram"
+                  ? FaInstagram
+                  : social.icon === "FaYoutube"
+                  ? FaYoutube
+                  : null;
+
+              return (
+                <li  key={social.id}>
+                  <Link to={social.url}>
+                    <IconComponent />
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

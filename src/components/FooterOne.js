@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from "react";
 import {
   FaArrowRight,
   FaCalendarAlt,
@@ -8,10 +8,13 @@ import {
   FaPhoneAlt,
   FaTwitter,
   FaYoutube,
-} from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
+import UserContext from "../Context/UserContext";
 
 const FooterOne = () => {
+  const { topNavItem, socialLinks } = useContext(UserContext); // Corrected: Get topNavItem from context
+
   return (
     <>
       {/* ================== Footer One Start ==================*/}
@@ -43,39 +46,47 @@ const FooterOne = () => {
                 <div className="thumb">
                   <img src="assets/img/logo2.png" alt="img" />
                 </div>
-                <div className="details">
-                  <p>
-                    Melbourne is simply is dumiomy is text Lorem Ipsum is simply
-                  </p>
-                  <p className="mt-3">
-                    <FaPhoneAlt /> (+888) 123 456 765
-                  </p>
-                  <p className="mt-2">
-                    <FaEnvelope /> (+888) 123 456 765
-                  </p>
-                  <ul className="social-media">
-                    <li>
-                      <Link to="#">
-                        <FaFacebookF />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <FaTwitter />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <FaInstagram />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="#">
-                        <FaYoutube />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+                {topNavItem.map((item) => {
+                  // Corrected: Return the JSX for each item
+                  return (
+                    <div className="details" key={item.id}>
+                      <p>
+                        Melbourne is simply dumiomy is text Lorem Ipsum is
+                        simply
+                      </p>
+                      <p className="mt-3">
+                        <FaPhoneAlt />
+                        {item.phone}
+                      </p>
+                      <p className="mt-2">
+                        <FaEnvelope />
+                        <a href={`mailto:${item.email}`}>{item.email}</a>
+                      </p>
+                      <ul className="social-media">
+                        {socialLinks.map((social) => {
+                          const IconComponent =
+                            social.icon === "FaFacebookF"
+                              ? FaFacebookF
+                              : social.icon === "FaTwitter"
+                              ? FaTwitter
+                              : social.icon === "FaInstagram"
+                              ? FaInstagram
+                              : social.icon === "FaYoutube"
+                              ? FaYoutube
+                              : null;
+
+                          return (
+                            <li key={item.id}>
+                              <Link to={social.url}>
+                                <IconComponent />
+                              </Link>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="col-lg-3 col-md-6">
@@ -94,7 +105,7 @@ const FooterOne = () => {
                   </li>
                   <li>
                     <Link to="/service">
-                      <FaArrowRight /> Digital marketing{' '}
+                      <FaArrowRight /> Digital marketing{" "}
                     </Link>
                   </li>
                   <li>
@@ -131,7 +142,7 @@ const FooterOne = () => {
                   </li>
                   <li>
                     <Link to="/service">
-                      <FaArrowRight /> Finance Sector{' '}
+                      <FaArrowRight /> Finance Sector{" "}
                     </Link>
                   </li>
                   <li>
@@ -212,7 +223,7 @@ const FooterOne = () => {
           </div>
         </div>
       </footer>
-      {/* ================== Footer One  end ==================*/}
+      {/* ================== Footer One end ==================*/}
     </>
   );
 };
