@@ -1,0 +1,39 @@
+{
+  "topNavItem": [{
+    "email":"demo@demogmail.com",
+    "phone": "+1 (234) 567-890"
+  }],
+  "navData": [
+    {
+      "logoImg": {
+        "logo": "ttp://localhost:3000/assets/img/logo.png"
+      }
+    },
+    { "id": 1, "name": "Home", "url": "/" },
+    { "id": 2, "name": "About", "url": "/about" },
+    { "id": 3, "name": "Blog", "url": "/Blog"},
+    { "id": 4, "name": "Contact", "url": "/contact" },
+    { "id": 4, "name": "Service", "url": "/service" }
+  ],
+  "headerData":[
+    {
+     "title":"Making The Digital World Work For You",
+     "description": "And In Order To Make A Business, Brand Advertising And Marketing Plays An Important Role. Similarly, In Making Cultivation Business Are Necessary.",
+     "bannerImg": ""
+    }
+  ],
+  "formData": [
+    {
+      "name": "user1",
+      "email": "demo@demo.com"
+    },
+    {
+      "id": "9bda",
+      "name": "vishal",
+      "email": "vishal@demo.com",
+      "phone": "1234567",
+      "subject": "text paying",
+      "message": "i have paied my text "
+    }
+  ]
+}
