@@ -33,9 +33,7 @@
     }
   ],
   "navData": [
-    {"logo":"https://hoogmatic.in/dist/image/hm_logo",
-    "url": "/"
-  },
+    { "logo": "https://hoogmatic.in/dist/image/hm_logo", "url": "/" },
     { "name": "Home", "url": "/" },
     { "name": "About", "url": "/about" },
     { "name": "blog", "url": "/Blog" },
