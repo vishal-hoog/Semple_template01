@@ -33,16 +33,14 @@
     }
   ],
   "navData": [
-    {
-      "logoImg": {
-        "logo": "https://hoogmatic.in/dist/image/hm_logo"
-      }
-    },
-    { "id": 1, "name": "Home", "url": "/" },
-    { "id": 2, "name": "About", "url": "/about" },
-    { "id": 3, "name": "Blog", "url": "/Blog" },
-    { "id": 4, "name": "Contact", "url": "/contact" },
-    { "id": 4, "name": "Service", "url": "/service" }
+    {"logo":"https://hoogmatic.in/dist/image/hm_logo",
+    "url": "/"
+  },
+    { "name": "Home", "url": "/" },
+    { "name": "About", "url": "/about" },
+    { "name": "blog", "url": "/Blog" },
+    { "name": "contact", "url": "/contact" },
+    { "name": "service", "url": "/service" }
   ],
   "headerData": [
     {

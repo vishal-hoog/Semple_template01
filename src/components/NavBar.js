@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import UserContext from "../Context/UserContext"
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import axios from "axios";
+
+
+
+
 const NavBar = (props) => {
+
+  const { navItems } = useContext(UserContext);
   const [active, setActive] = useState(false);
   const [searchShow, setSearchShow] = useState(false);
   const menuActive = () => {
@@ -27,18 +33,9 @@ const NavBar = (props) => {
 
   // State to store navigation items
 
-  const [navItems, setNavItems] = useState([]);
+  
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/navData")
-      .then((response) => {
-        setNavItems(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the nav items!", error);
-      });
-  }, []);
+  
 
   return (
     <>
@@ -85,13 +82,13 @@ const NavBar = (props) => {
               <span className="icon-right" />
             </button>
           </div>
-          {navItems.length > 0 && navItems[0].logoImg && (
+          {navItems.slice(0,1).map((item) => (
             <div className="logo">
-              <Link to="/">
-                <img src={navItems[0].logoImg.logo} alt="Logo" />
+              <Link to={item.url}>
+                <img src={item.logo} alt="Logo" />
               </Link>
             </div>
-          )}
+          ))}
           <div className="nav-right-part nav-right-part-mobile">
             <span className="search-bar-btn" onClick={searchActive}>
               <FaSearch />
@@ -110,7 +107,9 @@ const NavBar = (props) => {
               {navItems.map((item) => (
                 <li className="menu-item-has-children" key={item.id}>
                   <Link to={item.url}>{item.name}</Link>
+              
                 </li>
+                
               ))}
             </ul>
           </div>

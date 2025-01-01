@@ -13,8 +13,7 @@ import { Link } from "react-router-dom";
 import UserContext from "../Context/UserContext";
 
 const FooterOne = () => {
-  const { topNavItem, socialLinks } = useContext(UserContext); // Corrected: Get topNavItem from context
-
+  const { topNavItem, navItems, socialLinks } = useContext(UserContext); 
   return (
     <>
       {/* ================== Footer One Start ==================*/}
@@ -43,9 +42,12 @@ const FooterOne = () => {
           <div className="row">
             <div className="col-lg-3 col-md-6">
               <div className="widget widget_about">
-                <div className="thumb">
-                  <img src="assets/img/logo2.png" alt="img" />
-                </div>
+              {navItems.slice(0,1).map((item) =>(
+                <Link to={item.url} className="thumb">
+                <img src={item.logo} alt="Logo" />
+                </Link>
+              ))}
+                
                 {topNavItem.map((item) => {
                   // Corrected: Return the JSX for each item
                   return (
