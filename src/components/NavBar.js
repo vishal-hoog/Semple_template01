@@ -1,13 +1,10 @@
 import React, { useContext, useState } from "react";
-import UserContext from "../Context/UserContext"
+import UserContext from "../Context/UserContext";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
-
-
-const NavBar = (props) => {
-
+const NavBar = () => {
   const { navItems } = useContext(UserContext);
   const [active, setActive] = useState(false);
   const [searchShow, setSearchShow] = useState(false);
@@ -32,10 +29,6 @@ const NavBar = (props) => {
   }
 
   // State to store navigation items
-
-  
-
-  
 
   return (
     <>
@@ -82,7 +75,7 @@ const NavBar = (props) => {
               <span className="icon-right" />
             </button>
           </div>
-          {navItems.slice(0,1).map((item) => (
+          {navItems.slice(0, 1).map((item) => (
             <div className="logo">
               <Link to={item.url}>
                 <img src={item.logo} alt="Logo" />
@@ -106,10 +99,13 @@ const NavBar = (props) => {
               {/* Map over the navItems and display them */}
               {navItems.map((item) => (
                 <li className="menu-item-has-children" key={item.id}>
-                  <Link to={item.url}>{item.name}</Link>
-              
+                  <NavLink
+                    to={item.url}
+                    className={({ isActive }) => (isActive ? "active" : "")}
+                  >
+                    {item.name}
+                  </NavLink>
                 </li>
-                
               ))}
             </ul>
           </div>

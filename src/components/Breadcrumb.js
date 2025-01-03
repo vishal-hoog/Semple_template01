@@ -18,7 +18,7 @@ const Breadcrumb = ({ title }) => {
               <div className='col-lg-6 text-lg-end'>
                 <ul className='page-list'>
                   <li>
-                    <Link to='/index-1'>Home</Link>
+                    <Link to='/'>Home</Link>
                   </li>
                   {"  "}/ <li>{title}</li>
                 </ul>

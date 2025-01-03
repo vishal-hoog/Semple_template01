@@ -70,7 +70,6 @@
     }
   }
 }
-
 .navbar-area {
   position: relative;
   z-index: 99;
@@ -343,6 +342,9 @@
 .responsive-mobile-menu button:focus {
   outline: none;
   border: none;
+}
+.active{
+  color: #f58634 !important;
 }
 
 /**************** nav-left-part *************/
